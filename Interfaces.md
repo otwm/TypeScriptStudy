@@ -14,7 +14,6 @@ let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 
 ```
-* 타입 스크립트는 가지지 않는 값에 대해서 체크하지 않는다.
 * 명시적인 구현 없이도 똑같은 형태를 취하기만 하면 됨.
 * 순서 따윈 상관 없다.
 ```
@@ -124,7 +123,7 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
 let mySquare = createSquare({ colour: "red", width: 100 });
 
 ```
-* optional property에서의 프로퍼티 체크는 엄격하다. 존재하지 않는 프로퍼티를 추가해선 안됨
+* 존재하지 않는 프로퍼티를 추가해선 안됨
 ```
 // error: 'colour' not expected in type 'SquareConfig'
 let mySquare = createSquare({ colour: "red", width: 100 });
@@ -253,6 +252,79 @@ class Clock implements ClockInterface {
 }
 
 ```
+```
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
+}
+```
+* 자바나 c# 같이 클래스에서 인터페이스를 구현할 수 있다.(프로퍼티를 구현한다.자바랑은 다름.)
+* 명시적인 표현을 하는 군!(자바와 유사)
+* private 항목에 대한 구현은 없다.(public만 해)
+
+### 클래스의 정적 측면과 인스턴스 측면의 차이
+[번역] 클래스와 인터페이스로 작업 할 때 클래스에는 정적 측면의 유형과 인스턴스 측면의 유형이라는 두 가지
+ 유형이 있음을 명심하십시오. 구문을 사용하여 인터페이스를 만들고이 인터페이스를 구현하는 클래스를 
+ 만들려고하면 오류가 발생할 수 있습니다. 
+```
+interface ClockConstructor {
+    new (hour: number, minute: number);
+}
+
+class Clock implements ClockConstructor {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+
+```
+[번역] 
+이는 클래스가 인터페이스를 구현할 때 클래스의 인스턴스 면만 검사되기 때문입니다. 생성자는 고정 측에 
+있으므로이 검사에 포함되지 않습니다.
+
+대신 클래스의 정적인 측면에서 직접 작업해야합니다. 이 예제에서는 생성자에 대한 ClockConstructor와
+ 인스턴스 메서드에 대한 ClockInterface의 두 인터페이스를 정의합니다. 편의상 우리는 전달 된 타입의 
+ 인스턴스를 생성하는 createClock 생성자 함수를 정의합니다.
+ 
+```
+interface ClockConstructor {
+    new (hour: number, minute: number): ClockInterface;
+}
+interface ClockInterface {
+    tick();
+}
+
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+    return new ctor(hour, minute);
+}
+
+class DigitalClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log("beep beep");
+    }
+}
+class AnalogClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log("tick tock");
+    }
+}
+
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+
+```
+* 클래스의 정적 부분은 구현하지 않는다. 인스턴스에 해당하는 녀석만 구현.
+
+
 ## Extending Interfaces
 ```
 interface Shape {
@@ -287,6 +359,11 @@ square.penWidth = 5.0;
 
 ```
 ## Hybrid Types
+[번역]이전에 언급했듯이 인터페이스는 실제 JavaScript에서 제공되는 풍부한 유형을 나타낼 수 있습니다.
+ JavaScript의 역동적이고 유연한 특성으로 인해 위에 설명 된 일부 유형의 조합으로 작동하는 객체가 
+ 종종 발생할 수 있습니다.
+    
+이러한 예 중 하나는 함수와 객체의 역할을하는 객체이며 추가 속성이 있습니다
 
 ```
 interface Counter {
@@ -309,6 +386,15 @@ c.interval = 5.0;
 ```
 
 ## Interfaces Extending Classes
+
+[번역]인터페이스 유형이 클래스 유형을 확장 할 때 클래스 유형을 상속하지만 구현은 상속하지 않습니다. 마치
+ 인터페이스가 구현을 제공하지 않고 클래스의 모든 멤버를 선언 한 것과 같습니다. 인터페이스는 기본 클래스의
+private 및 protected 멤버도 상속합니다. 즉, private 또는 protected 멤버가있는 클래스를 
+확장하는 인터페이스를 만들면 해당 인터페이스 유형은 해당 클래스 또는 해당 클래스의 하위 클래스에서만 
+구현할 수 있습니다.
+
+이는 상속 계층이 크지 만 코드가 특정 속성이있는 하위 클래스에서만 작동하도록 지정하려는 경우에 유용합니다.
+ 서브 클래스는 기본 클래스에서 상속하는 것 외에도 관련 될 필요가 없습니다.
 ```
 class Control {
     private state: any;
@@ -335,3 +421,16 @@ class Location {
 }
 
 ```
+[번역]위의 예제에서 SelectableControl에는 Private state 속성을 포함하여 Control의 모든 멤버가
+ 포함되어 있습니다. state는 private 멤버이기 때문에 Control의 하위 항목에서만 
+ SelectableControl을 구현할 수 있습니다. 이는 Control 멤버의 하위 멤버 만 동일한 선언에서
+  비롯된 비공개 멤버를 가질 수 있기 때문에 비공개 멤버가 호환 될 수 있어야하기 때문입니다.
+    
+Control 클래스 내에서 SelectableControl의 인스턴스를 통해 주 전용 멤버에 액세스 할 수 있습니다.
+ 실제로 SelectableControl은 select 메서드가있는 것으로 알려진 컨트롤과 같은 역할을합니다.
+  Button 클래스와 TextBox 클래스는 SelectableControl의 하위 유형입니다
+(둘 다 Control에서 상속되고 select 메서드가 있기 때문에). 그러나 Image 클래스와 Location 
+클래스는 그렇지 않습니다.
+
+(실제로 SelectableControl을 구현하기 위해서는 반드시 Control의 하위이어야 하며, 
+타입 어서션도 통하지가 않음.)

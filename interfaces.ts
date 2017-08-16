@@ -1,10 +1,33 @@
-
-interface NumType {
-    tt: number;
-    index: string;
+class Control {
+    private state: any;
 }
 
-let a = {tt: 2, index: 'fd', ij:9};
+class Control2 {
+    private state: any;
+}
 
-let k:NumType = a;
-console.log(k.tt);
+interface SelectableControl extends Control {
+    select(): void;
+}
+
+class Button extends Control implements SelectableControl{
+    select() { }
+}
+
+class Button2 extends Control2 {
+    select() { }
+}
+
+class TextBox extends Control {
+    select() { }
+}
+
+class Image1 {
+    select() { }
+}
+
+class Location1 {
+    select() { }
+}
+
+let a:SelectableControl = (new Button2()) as SelectableControl;
