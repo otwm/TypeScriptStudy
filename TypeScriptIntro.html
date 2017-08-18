@@ -1,0 +1,84 @@
+
+    <!DOCTYPE html>
+    <html>
+      <meta charset="UTF-8" />
+      <title>Typescriptintro</title>
+      <meta
+        name="description"
+        content="TypeScript란 무엇인가?
+
+TypeScript는 Microsoft에서 개발하여 2012년에 발표한 JavaScript로 컴파일 되는 언어이다.
+ JavaScript에 정적 "
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <link
+        href="//fonts.googleapis.com/css?family=Rubik|Unica+One"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="./static/css/normalize.css?345732f008521188" />
+      <link rel="stylesheet" href="./static/css/flexboxgrid.min.css?345732f008521188" />
+      <link rel="stylesheet" href="./static/css/github-flavored-markdown.css?345732f008521188" />
+      <link rel="stylesheet" href="./static/css/light.css?345732f008521188" />
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css" />
+      <style>
+        body, .markdown-body {
+          font-family: "Rubik|Unica+One", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+      </style>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+      <script src="./static/main.js?345732f008521188"></script>
+      <body>
+        <div id="root"><div class="wrap container-fluid"><header class="site-header"><h1><a href="/">TypeScriptStudy</a></h1><nav class="nav-link"><a href="/">Home</a><a href="https://github.com/https://github.com/otwm/TypeScriptStudy.git">Git</a><a href="#" class="more"><svg aria-hidden="true" class="octicon" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg></a></nav></header><section class="row main"><aside class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><div class="chap"><span class="chap-title"></span><ul><li class=""><a href="./basicType.html">Basictype</a></li><li class=""><a href="./Interfaces.html">Interfaces</a></li><li class=""><a href="./TypeScriptin5minutes.html">Typescriptin5minutes</a></li><li class="active"><a href="./TypeScriptIntro.html">Typescriptintro</a></li><li class=""><a href="./variableDeclation.html">Variabledeclation</a></li></ul></div></aside><article class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><div class="markdown-body"><h1 id="typescript란-무엇인가"><a href="#typescript%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80" aria-hidden="true"><span class="icon icon-link"></span></a>TypeScript란 무엇인가?</h1>
+<p>TypeScript는 Microsoft에서 개발하여 2012년에 발표한 JavaScript로 컴파일 되는 언어이다.
+JavaScript에 정적 타이핑과 ES2015를 기반으로 하는 객체지향적 문법이 추가된 것을 주요 특징으로 한다.
+나올 당시에는 Windows 이외의 다른 개발 환경지원이 미비해서 부정적인 의견도 적지 않았던 것으로 알고
+있지만, 생태계 지원이 점점 확장되고, 최근에는 Angular 팀에서 이 언어를 메인 언어로 채택하면서 현재로서는
+정적 타이핑을 지원하는 다른 JavaScript 전처리기(Flow 등)에 비해서 커뮤니티나 안정성 측면에서
+앞서나가는 모양새다.</p>
+<p>JavaScript로 컴파일 되는 언어라고 하니 CoffeeScript가 떠오른다. 그러나 TypeScript는
+CoffeeScript와는 달리 JavaScript의 Superset이라는 차이점이 있다. 즉, 지금까지 사용했던 익숙한
+JavaScript의 문법을 사용하면서도 코딩이 가능하다. 특히, TypeScript는 ES2015 문법도 지원하므로
+TypeScript 이외의 별도 Transpiler를 사용하지 않아도 ES2015 기능들을 브라우저에서
+사용할 수 있다는 장점도 있다. 게다가 미래의 ECMAScript Feature들도 계속해서 지원할 예정이므로
+표준에서 벗어날 걱정도 덜 수 있겠다.</p>
+<ul>
+<li>사실은 그래서 자바스크립트이다. 하지만 고유의 타입스크립트 문법이 있고, 컴파일 과정을 통해 자바스크립트로 변환한다</li>
+<li>정적 타입 정의를 지원한다.</li>
+<li>es6의 문법을 지원한다.</li>
+</ul>
+<img src="https://hyunseob.github.io/images/ts-es6-es5.png"/>
+<h1 id="뜬금-없이-typescript를-하는-이유는"><a href="#%EB%9C%AC%EA%B8%88-%EC%97%86%EC%9D%B4-typescript%EB%A5%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0%EB%8A%94" aria-hidden="true"><span class="icon icon-link"></span></a>뜬금 없이 TypeScript를 하는 이유는?</h1>
+<ul>
+<li>원래 정적 타입을 사랑한다. 동적 타입 언어 싫어!(아니 자바스크립트 프로그래머가??)</li>
+<li>정적 타입 선언은 미연에 발생할 오류를 줄여준다.</li>
+<li>정적 타입 언어는 대게 괜찮은 문서화 도구를 제공한다(TypeDoc)</li>
+<li>나는 명확한 Domain의 정의가 프로그램 유지 보수에 도움이 된다고 생각하면, 이걸 쓰면 그걸 더 잘 할거 같아서..</li>
+<li>왠지 멋져보이니까???@#@_#!!</li>
+</ul>
+<h1 id="features"><a href="#features" aria-hidden="true"><span class="icon icon-link"></span></a>Features</h1>
+<p>TypeScript의 기능들은 크게 보면 정적 타이핑과 ECMAScript 구현으로 나뉠 수 있다.</p>
+<ul>
+<li>Type annotation &#x26; 정적 타입 체크</li>
+<li><strong>타입 추론</strong>(오예!!)</li>
+<li>Interfaces</li>
+<li>
+<p>ES2015 Features</p>
+<ul>
+<li>let &#x26; const</li>
+<li>Block scope</li>
+<li>Arrow functions</li>
+<li>Classes</li>
+<li>Promise</li>
+<li>Etc…</li>
+</ul>
+</li>
+<li>Namespaces &#x26; Modules(CommonJS, ES2015, AMD)</li>
+<li>Generic</li>
+<li>Mixin</li>
+</ul>
+<p>출처 : <a href="https://hyunseob.github.io/2016/09/25/typescript-introduction/">TypeScript: 소개</a></p>
+</div></article></section><footer>© 2017 <a>TypeScriptStudy</a>. All rights reserved.</footer></div></div>
+      </body>
+    </html>
+  

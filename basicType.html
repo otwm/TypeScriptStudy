@@ -1,0 +1,229 @@
+
+    <!DOCTYPE html>
+    <html>
+      <meta charset="UTF-8" />
+      <title>Basictype</title>
+      <meta
+        name="description"
+        content="Basic Type
+
+Boolean
+
+
+
+Number
+
+
+
+이진, 16진, 8진 다됨.
+
+String
+
+
+
+string interpolation 지원
+
+문자가 끈어져도 표현됨.
+
+"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <link
+        href="//fonts.googleapis.com/css?family=Rubik|Unica+One"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="./static/css/normalize.css?345732f008521188" />
+      <link rel="stylesheet" href="./static/css/flexboxgrid.min.css?345732f008521188" />
+      <link rel="stylesheet" href="./static/css/github-flavored-markdown.css?345732f008521188" />
+      <link rel="stylesheet" href="./static/css/light.css?345732f008521188" />
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css" />
+      <style>
+        body, .markdown-body {
+          font-family: "Rubik|Unica+One", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+      </style>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+      <script src="./static/main.js?345732f008521188"></script>
+      <body>
+        <div id="root"><div class="wrap container-fluid"><header class="site-header"><h1><a href="/">TypeScriptStudy</a></h1><nav class="nav-link"><a href="/">Home</a><a href="https://github.com/https://github.com/otwm/TypeScriptStudy.git">Git</a><a href="#" class="more"><svg aria-hidden="true" class="octicon" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg></a></nav></header><section class="row main"><aside class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><div class="chap"><span class="chap-title"></span><ul><li class="active"><a href="./basicType.html">Basictype</a></li><li class=""><a href="./Interfaces.html">Interfaces</a></li><li class=""><a href="./TypeScriptin5minutes.html">Typescriptin5minutes</a></li><li class=""><a href="./TypeScriptIntro.html">Typescriptintro</a></li><li class=""><a href="./variableDeclation.html">Variabledeclation</a></li></ul></div></aside><article class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><div class="markdown-body"><h1 id="basic-type"><a href="#basic-type" aria-hidden="true"><span class="icon icon-link"></span></a>Basic Type</h1>
+<h2 id="boolean"><a href="#boolean" aria-hidden="true"><span class="icon icon-link"></span></a>Boolean</h2>
+<pre><code>let isDone: boolean = false;
+</code></pre>
+<h2 id="number"><a href="#number" aria-hidden="true"><span class="icon icon-link"></span></a>Number</h2>
+<pre><code>let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+</code></pre>
+<ul>
+<li>
+<p>이진, 16진, 8진 다됨.</p>
+<h2 id="string"><a href="#string" aria-hidden="true"><span class="icon icon-link"></span></a>String</h2>
+</li>
+</ul>
+<pre><code>let color: string = "blue";
+color = 'red';
+</code></pre>
+<pre><code>let fullName: string = `Bob Bobbington`;
+let age: number = 37;
+let sentence: string = `Hello, my name is ${ fullName }.
+
+I'll be ${ age + 1 } years old next month.`;
+</code></pre>
+<ul>
+<li>string interpolation 지원</li>
+<li>문자가 끈어져도 표현됨.</li>
+<li>
+<p>여까지는 es6와 비</p>
+<h2 id="array"><a href="#array" aria-hidden="true"><span class="icon icon-link"></span></a>Array</h2>
+</li>
+</ul>
+<pre><code>let list: number[] = [1, 2, 3];
+</code></pre>
+<pre><code>let list: Array&#x3C;number> = [1, 2, 3];
+</code></pre>
+<h2 id="tuple"><a href="#tuple" aria-hidden="true"><span class="icon icon-link"></span></a>Tuple</h2>
+<p>보통은 두개의 쌍 데이터를 다루는 데이터 타입인데, typescript는 뭔가 기묘한듯.</p>
+<pre><code>// Declare a tuple type
+let x: [string, number];
+// Initialize it
+x = ["hello", 10]; // OK
+// Initialize it incorrectly
+x = [10, "hello"]; // Error
+</code></pre>
+<pre><code>console.log(x[0].substr(1)); // OK
+console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
+</code></pre>
+<pre><code>x[3] = "world"; // OK, 'string' can be assigned to 'string | number'
+
+console.log(x[5].toString()); // OK, 'string' and 'number' both have 'toString'
+
+x[6] = true; // Error, 'boolean' isn't 'string | number'
+</code></pre>
+<ul>
+<li>특이한 것은 튜플은 보통 두개의 쌍 데이터인데, typescript는 그 이상도 가능하다.(뭐..뭐뭐지? 이컨셉은 ??)</li>
+<li>세번째 부터는 유니온 타입이 된다.</li>
+<li>
+<p>결국에 자바스크립트로 변환되는 거 생각해보면, 사실은 그냥 어레이 인듯...</p>
+<h2 id="enum"><a href="#enum" aria-hidden="true"><span class="icon icon-link"></span></a>Enum</h2>
+<p>피싱!
+프로그램 내에서 상수 정의는 중요한 부분이다!!(과도한 설계/미진한 설계)</p>
+</li>
+</ul>
+<pre><code>enum Color {Red, Green, Blue}
+let c: Color = Color.Green;
+</code></pre>
+<pre><code>enum Color {Red = 1, Green, Blue}
+let c: Color = Color.Green;
+</code></pre>
+<ul>
+<li>기본적으로 enum은 0부터 시작되는 숫자 타입이지만, 위에 처럼 바꿀수도 있다.</li>
+</ul>
+<pre><code>enum Color {Red = 1, Green = 2, Blue = 4}
+let c: Color = Color.Green;
+</code></pre>
+<ul>
+<li>내가 원하는 경우로 바</li>
+</ul>
+<pre><code>enum Color {Red = 1, Green, Blue}
+let colorName: string = Color[2];
+
+alert(colorName);
+</code></pre>
+<ul>
+<li>네임 매칭도 가능 하다.</li>
+<li>순서 지정 가능</li>
+</ul>
+<p>그렇다면 이것은???(js compile 결과)</p>
+<h2 id="any"><a href="#any" aria-hidden="true"><span class="icon icon-link"></span></a>Any</h2>
+<pre><code>let notSure: any = 4;
+notSure = "maybe a string instead";
+notSure = false; // okay, definitely a boolean
+</code></pre>
+<ul>
+<li>타입 체크 하기 싫으면 이거</li>
+<li></li>
+</ul>
+<p>any 유형은 기존 JavaScript로 작업 할 수있는 강력한 방법이므로 컴파일하는 동안 점진적으로 유형 확인을
+옵트 인하거나 옵트 아웃 할 수 있습니다. Object가 다른 언어에서와 마찬가지로 비슷한 역할을 할 것으로
+기대할 수 있습니다. 그러나 Object 유형의 변수는 값을 할당 할 수만 있습니다. 실제 존재하는 메소드라도
+임의의 메소드를 호출 할 수는 없습니다.</p>
+<pre><code>let notSure: any = 4;
+notSure.ifItExists(); // okay, ifItExists might exist at runtime
+notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
+
+let prettySure: Object = 4;
+prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
+</code></pre>
+<pre><code>let list: any[] = [1, true, "free"];
+
+list[1] = 100;
+</code></pre>
+<h2 id="void"><a href="#void" aria-hidden="true"><span class="icon icon-link"></span></a>Void</h2>
+<pre><code>function warnUser(): void {
+    alert("This is my warning message");
+}
+</code></pre>
+<ul>
+<li>
+<p>any 랑은 반대. 리턴 타입 시 유효. undefined는 별도 타입이 있으니 쓰지 말자.</p>
+<h2 id="null-and-undefined"><a href="#null-and-undefined" aria-hidden="true"><span class="icon icon-link"></span></a>Null and Undefined</h2>
+</li>
+</ul>
+<pre><code>// Not much else we can assign to these variables!
+let u: undefined = undefined;
+let n: null = null;
+</code></pre>
+<p>각각의 undefined, null 타입이 존재하며, 모든 타입의 서브 타입. 그러므로, number 타입에서도 쓸 수 있다
+하지만 --strictNullChecks 옵션이 존재하며, 이 옵션이 활성화 되면 넘버 타입에 널이나 언디파인드 등이 할당
+되는 것을 방지 한다. 이 것은 에러 방지에 도움되며, 권장된다. 만약, 할당 가능하게 하고 싶다면, 유니온 타입을
+사용한다.</p>
+<h2 id="never"><a href="#never" aria-hidden="true"><span class="icon icon-link"></span></a>Never</h2>
+<pre><code>// Function returning never must have unreachable end point
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// Inferred return type is never
+function fail() {
+    return error("Something failed");
+}
+
+// Function returning never must have unreachable end point
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+</code></pre>
+<p>도달 할 수 없는 타입. 보통 에러가 쓰로우 되던가, 무한 루프 던가 하는 것들. 변수도 쓸수 잇는듯.
+네버 타입은 모든 타입의 서브 타이지만, 네버 타입 자신을 제외하고는 다른 타입의 서브 타입이 될 수
+없다. any도 할당 불가능.</p>
+<h2 id="type-assertions"><a href="#type-assertions" aria-hidden="true"><span class="icon icon-link"></span></a>Type assertions</h2>
+<p>종종 당신이 타입스크립트 보다 해당 값의 타입을 더 잘 알고 있는 경우 Type assertions을 쓸수 있다.
+즉 Type assertions은 나는 잘 알고 있은 날 따라와 뭐 이런거? Type assertions은 타입 캐스트와도
+비슷하며 데이터에 대한 체킹이나 재구조화를 하지 않는다. 런타임 상황에서 충돌이 없으며, 컴퍼일러에 의해 순
+수하게 사용된다. 타입 스크립트는 여기에 체크가 필요 없다고 생각한다.
+두 가지 문법이 존재하며, </p>
+<ul>
+<li>angle-braket 방식</li>
+</ul>
+<pre><code>let someValue: any = "this is a string";
+
+let strLength: number = (&#x3C;string>someValue).length;
+</code></pre>
+<ul>
+<li>as 문</li>
+</ul>
+<pre><code>let someValue: any = "this is a string";
+
+let strLength: number = (someValue as string).length;
+</code></pre>
+<p>어느 것을 사용하든 당신의 선택이지만, jsx와 같이 사용할 때는 as 많이 가능하다. </p>
+<h2 id="a-note-about-let"><a href="#a-note-about-let" aria-hidden="true"><span class="icon icon-link"></span></a>A note about let</h2>
+<p>타입스크립트에서는 var 않쓰고 let 쓰다고 합니다.</p>
+<p><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">https://www.typescriptlang.org/docs/handbook/basic-types.html</a></p>
+</div></article></section><footer>© 2017 <a>TypeScriptStudy</a>. All rights reserved.</footer></div></div>
+      </body>
+    </html>
+  
