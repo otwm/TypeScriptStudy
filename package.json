@@ -1,0 +1,15 @@
+{
+  "name": "TypeScriptStudy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/otwm/TypeScriptStudy.git",
+  "author": "kdo <otwmoo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs": "flybook docs --outdir=out",
+    "deploy": "gh-pages -d out"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.0.0"
+  }
+}
