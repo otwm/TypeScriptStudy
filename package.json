@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "docs": "flybook docs --outdir=out",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out",
+    "publish": "flybook docs --outdir=out && gh-pages -d out"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0"

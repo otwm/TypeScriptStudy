@@ -1,8 +1,8 @@
 ---
   Start: 
-    01.typescript Intro: "start/01.TypeScript Intro.md"
-    02.typescript In 5minutes: "start/02.TypeScript in 5minutes.md"
+    01. Typescript Intro: "start/01. TypeScript Intro.md"
+    02. Typescript In 5minutes: "start/02. TypeScript in 5minutes.md"
   Handbook: 
-    01.basictype: "handbook/01.basicType.md"
-    02.variable Declation: "handbook/02.variable Declation.md"
-    03.interfaces: "handbook/03.Interfaces.md"
+    01. Basictype: "handbook/01. basicType.md"
+    02. Variable Declation: "handbook/02. variable Declation.md"
+    03. Interfaces: "handbook/03. Interfaces.md"
