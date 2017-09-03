@@ -1,0 +1,236 @@
+
+    <!DOCTYPE html>
+    <html>
+      <meta charset="UTF-8" />
+      <title>04. Class</title>
+      <meta
+        name="description"
+        content="Class
+
+소개
+
+프로토타입 기반 확장 방식(es5)에서 클래스기반 방식(classic oop)으로 전환.
+
+es2015도 이미 그러고 있다.
+
+Classes
+
+
+
+고전의 oop"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <link
+        href="//fonts.googleapis.com/css?family=Rubik|Unica+One"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="../static/css/normalize.css?7c610d17db854306" />
+      <link rel="stylesheet" href="../static/css/flexboxgrid.min.css?7c610d17db854306" />
+      <link rel="stylesheet" href="../static/css/github-flavored-markdown.css?7c610d17db854306" />
+      <link rel="stylesheet" href="../static/css/light.css?7c610d17db854306" />
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css" />
+      <style>
+        body, .markdown-body {
+          font-family: "Rubik|Unica+One", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+      </style>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+      <script src="../static/main.js?7c610d17db854306"></script>
+      <body>
+        <div id="root"><div class="wrap container-fluid"><header class="site-header"><h1><a href="/">TypeScriptStudy</a></h1><nav class="nav-link"><a href="/">Home</a><a href="https://github.com/https://github.com/otwm/TypeScriptStudy.git">Git</a><a href="#" class="more"><svg aria-hidden="true" class="octicon" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg></a></nav></header><section class="row main"><aside class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><div class="chap"><span class="chap-title">Start</span><ul><li class=""><a href="../start/01.%20TypeScript%20Intro.html">01. Typescript Intro</a></li><li class=""><a href="../start/02.%20TypeScript%20in%205minutes.html">02. Typescript In 5minutes</a></li></ul></div><div class="chap"><span class="chap-title">Handbook</span><ul><li class=""><a href="../handbook/01.%20basicType.html">01. Basictype</a></li><li class=""><a href="../handbook/02.%20variable%20Declation.html">02. Variable Declation</a></li><li class=""><a href="../handbook/03.%20Interfaces.html">03. Interfaces</a></li><li class="active"><a href="../handbook/04.%20Class.html">04. Class</a></li><li class=""><a href="../handbook/05.%20Functions.html">05. Functions</a></li><li class=""><a href="../handbook/06.%20Generic.html">06. Generic</a></li><li class=""><a href="../handbook/07.%20Enum.html">07. Enum</a></li></ul></div></aside><article class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><div class="markdown-body"><h1 id="class"><a href="#class" aria-hidden="true"><span class="icon icon-link"></span></a>Class</h1>
+<h2 id="소개"><a href="#%EC%86%8C%EA%B0%9C" aria-hidden="true"><span class="icon icon-link"></span></a>소개</h2>
+<ul>
+<li>프로토타입 기반 확장 방식(es5)에서 클래스기반 방식(classic oop)으로 전환.</li>
+<li>es2015도 이미 그러고 있다.</li>
+</ul>
+<h2 id="classes"><a href="#classes" aria-hidden="true"><span class="icon icon-link"></span></a>Classes</h2>
+<pre><code>class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+
+let greeter = new Greeter("world");
+</code></pre>
+<p>고전의 oop와 크게 다를 바가 없다.</p>
+<h2 id="inheritance"><a href="#inheritance" aria-hidden="true"><span class="icon icon-link"></span></a>Inheritance</h2>
+<pre><code>class Animal {
+    name: string;
+    constructor(theName: string) { this.name = theName; }
+    move(distanceInMeters: number = 0) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+
+class Snake extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 5) {
+        console.log("Slithering...");
+        super.move(distanceInMeters);
+    }
+}
+
+class Horse extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 45) {
+        console.log("Galloping...");
+        super.move(distanceInMeters);
+    }
+}
+
+let sam = new Snake("Sammy the Python");
+let tom: Animal = new Horse("Tommy the Palomino");
+
+sam.move();
+tom.move(34);
+</code></pre>
+<ul>
+<li>하위 클래스에서는 super를 사용해야 함.
+확장도 똑같다.</li>
+</ul>
+<h2 id="public-private-and-protected-modifiers"><a href="#public-private-and-protected-modifiers" aria-hidden="true"><span class="icon icon-link"></span></a>Public, private, and protected modifiers</h2>
+<h3 id="기본은-public-써도-상관-없다-"><a href="#%EA%B8%B0%EB%B3%B8%EC%9D%80-public-%EC%8D%A8%EB%8F%84-%EC%83%81%EA%B4%80-%EC%97%86%EB%8B%A4-" aria-hidden="true"><span class="icon icon-link"></span></a>기본은 public( 써도 상관 없다. )</h3>
+<pre><code>class Animal {
+    public name: string;
+    public constructor(theName: string) { this.name = theName; }
+    public move(distanceInMeters: number) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+</code></pre>
+<h3 id="priivate"><a href="#priivate" aria-hidden="true"><span class="icon icon-link"></span></a>priivate</h3>
+<p>클래스 바깥에서는 보이지 않는 멤버</p>
+<p>호환성에 대한 지리한 설명. 코드 보면 대강 이해 된다.
+[번역]
+TypeScript는 구조형 시스템입니다. 우리가 두 가지 유형을 비교할 때, 그들이 어디서 왔는지에 관계없이,
+모든 구성원의 유형이 호환 가능하다면 유형 자체가 호환 가능하다고 말합니다.
+그러나 비공개 및 보호 된 멤버가있는 형식을 비교할 때 이러한 유형을 다르게 처리합니다. 호환 가능한 것으로
+간주되는 두 유형의 경우, 그 중 하나에 개인 구성원이 있으면 다른 하나는
+동일한 선언에서 시작된 개인 구성원을 가져야합니다. 보호 된 구성원에게도 마찬가지입니다.
+이 예제가 실제로 어떻게 실행되는지 더 잘 보여주는 예제를 살펴 보겠습니다.</p>
+<pre><code>class Animal {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+class Rhino extends Animal {
+    constructor() { super("Rhino"); }
+}
+
+class Employee {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+let animal = new Animal("Goat");
+let rhino = new Rhino();
+let employee = new Employee("Bob");
+
+animal = rhino;
+animal = employee; // Error: 'Animal' and 'Employee' are not compatible
+</code></pre>
+<p>[번역]이 예제에서는 Rhino가 Animal의 하위 클래스 인 Animal과 Rhino가 있습니다. 우리는 또한
+모양면에서 Animal과 똑같이 보이는 새로운 클래스 Employee를 가지고 있습니다. 우리는 이러한 클래스의
+인스턴스를 생성 한 다음 서로를 할당하여 어떤 일이 발생하는지 봅니다. Animal과 Rhino는 동일한 형태의
+개인 이름 인 Animal의 문자열에서 셰이프의 개인면을 공유하기 때문에 호환됩니다. 그러나 Employee의
+경우는 그렇지 않습니다. Employee에서 Animal로 할당 할 때 이러한 유형이 호환되지 않는다는 오류가
+발생합니다. Employee에는 name이라는 private 멤버가 있지만 Animal에서 선언 한 멤버는 아닙니다.
+이 예제에서는 Rhino가 Animal의 하위 클래스 인 Rhino와 Animal을 사용합니다. 우리는 또한 모양면에서
+Animal과 똑같이 보이는 새로운 클래스 Employee를 가지고 있습니다. 우리는 이러한 클래스의 인스턴스를
+생성 한 다음 서로를 할당하여 어떤 일이 발생하는지 봅니다. Animal과 Rhino는 동일한 형태의 개인
+이름 인 Animal의 문자열에서 셰이프의 개인면을 공유하기 때문에 호환됩니다. 그러나 Employee의 경우는
+그렇지 않습니다. Employee에서 Animal로 할당 할 때 이러한 유형이 호환되지 않는다는 오류가 발생합니다.
+Employee에는 name이라는 private 멤버가 있지만, Animal에서 선언 한 멤버는 아닙니다.</p>
+<h3 id="protected"><a href="#protected" aria-hidden="true"><span class="icon icon-link"></span></a>protected</h3>
+<p>private와 같지만 하위에서는 접근이 가능하다.</p>
+<pre><code>class Person {
+    protected name: string;
+    constructor(name: string) { this.name = name; }
+}
+
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee("Howard", "Sales");
+console.log(howard.getElevatorPitch());
+console.log(howard.name); // error
+</code></pre>
+<h3 id="readonly-modifier"><a href="#readonly-modifier" aria-hidden="true"><span class="icon icon-link"></span></a>Readonly modifier</h3>
+<ul>
+<li>리드 온니 사용가능( 다른 접근자와 혼합 가능)</li>
+</ul>
+<pre><code>class Octopus {
+    readonly name: string;
+    readonly numberOfLegs: number = 8;
+    constructor (theName: string) {
+        this.name = theName;
+    }
+}
+let dad = new Octopus("Man with the 8 strong legs");
+dad.name = "Man with the 3-piece suit"; // error! name is readonly.
+</code></pre>
+<h3 id="parameter-properties"><a href="#parameter-properties" aria-hidden="true"><span class="icon icon-link"></span></a>Parameter properties</h3>
+<ul>
+<li>생성자 파라미터는 자동 등록 된다.    </li>
+</ul>
+<pre><code>class Octopus {
+    readonly numberOfLegs: number = 8;
+    constructor(readonly name: string) {
+    }
+}
+</code></pre>
+<h2 id="접근자"><a href="#%EC%A0%91%EA%B7%BC%EC%9E%90" aria-hidden="true"><span class="icon icon-link"></span></a>접근자</h2>
+<pre><code>class Employee {
+    fullName: string;
+}
+
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    console.log(employee.fullName);
+}
+</code></pre>
+<pre><code>let passcode = "secret passcode";
+
+class Employee {
+    private _fullName: string;
+
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (passcode &#x26;&#x26; passcode == "secret passcode") {
+            this._fullName = newName;
+        }
+        else {
+            console.log("Error: Unauthorized update of employee!");
+        }
+    }
+}
+
+let employee = new Employee();
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    console.log(employee.fullName);
+}
+</code></pre>
+</div></article></section><footer>© 2017 <a>TypeScriptStudy</a>. All rights reserved.</footer></div></div>
+      </body>
+    </html>
+  

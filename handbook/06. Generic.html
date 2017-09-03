@@ -1,0 +1,280 @@
+
+    <!DOCTYPE html>
+    <html>
+      <meta charset="UTF-8" />
+      <title>06. Generic</title>
+      <meta
+        name="description"
+        content="Generics
+
+소개
+
+소프트웨어 공학의 주요 부분은 잘 정의되고 일관된 API를 가질뿐만 아니라 재사용 가능한 구성 요소를 구축하는
+ 것입니다. 현재의 데이터뿐만 아니라 미래의"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <link
+        href="//fonts.googleapis.com/css?family=Rubik|Unica+One"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="../static/css/normalize.css?7c610d17db854306" />
+      <link rel="stylesheet" href="../static/css/flexboxgrid.min.css?7c610d17db854306" />
+      <link rel="stylesheet" href="../static/css/github-flavored-markdown.css?7c610d17db854306" />
+      <link rel="stylesheet" href="../static/css/light.css?7c610d17db854306" />
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css" />
+      <style>
+        body, .markdown-body {
+          font-family: "Rubik|Unica+One", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+      </style>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+      <script src="../static/main.js?7c610d17db854306"></script>
+      <body>
+        <div id="root"><div class="wrap container-fluid"><header class="site-header"><h1><a href="/">TypeScriptStudy</a></h1><nav class="nav-link"><a href="/">Home</a><a href="https://github.com/https://github.com/otwm/TypeScriptStudy.git">Git</a><a href="#" class="more"><svg aria-hidden="true" class="octicon" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg></a></nav></header><section class="row main"><aside class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><div class="chap"><span class="chap-title">Start</span><ul><li class=""><a href="../start/01.%20TypeScript%20Intro.html">01. Typescript Intro</a></li><li class=""><a href="../start/02.%20TypeScript%20in%205minutes.html">02. Typescript In 5minutes</a></li></ul></div><div class="chap"><span class="chap-title">Handbook</span><ul><li class=""><a href="../handbook/01.%20basicType.html">01. Basictype</a></li><li class=""><a href="../handbook/02.%20variable%20Declation.html">02. Variable Declation</a></li><li class=""><a href="../handbook/03.%20Interfaces.html">03. Interfaces</a></li><li class=""><a href="../handbook/04.%20Class.html">04. Class</a></li><li class=""><a href="../handbook/05.%20Functions.html">05. Functions</a></li><li class="active"><a href="../handbook/06.%20Generic.html">06. Generic</a></li><li class=""><a href="../handbook/07.%20Enum.html">07. Enum</a></li></ul></div></aside><article class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><div class="markdown-body"><h1 id="generics"><a href="#generics" aria-hidden="true"><span class="icon icon-link"></span></a>Generics</h1>
+<h2 id="소개"><a href="#%EC%86%8C%EA%B0%9C" aria-hidden="true"><span class="icon icon-link"></span></a>소개</h2>
+<p>소프트웨어 공학의 주요 부분은 잘 정의되고 일관된 API를 가질뿐만 아니라 재사용 가능한 구성 요소를 구축하는
+것입니다. 현재의 데이터뿐만 아니라 미래의 데이터를 처리 할 수있는 구성 요소는 대형 소프트웨어 시스템
+구축을위한 가장 유연한 기능을 제공합니다.</p>
+<p>C # 및 Java와 같은 언어에서 재사용 가능한 구성 요소를 작성하기위한 도구 상자의 기본 도구 중 하나는
+제네릭 즉 단일 유형이 아닌 다양한 유형에서 작동 할 수있는 구성 요소를 생성하는 것입니다. 이를 통해
+사용자는 이러한 구성 요소를 사용하고 자신의 유형을 사용할 수 있습니다.</p>
+<ul>
+<li>보통은 어레이 등의 요소같은 것 또는 객체 안에 타입이 무엇이다라고 생각하면 이해하기 편하다.</li>
+</ul>
+<h2 id="hello-world-of-generics"><a href="#hello-world-of-generics" aria-hidden="true"><span class="icon icon-link"></span></a>Hello World of Generics</h2>
+<p>아래의 identy 함수를 보자. 현재는 number 입력에 number 반환이다. 만약 실제 우리가 원하는 것이 주어진
+파라미터에 동일한 타입으로 반환하는 것을 원한다고 하면, 아래의 함수는 오직 number 만 대응대기에 원하는 것
+이 아니다. </p>
+<pre><code>function identity(arg: number): number {
+   return arg;
+}
+</code></pre>
+<p>그렇다면 any를 받아서 any를 반환하는 경우는 어떠한가? 모든 경우를 대응할 수 있지만, 정확히 입출력의 형이
+동일하다는 보장은 없다.</p>
+<pre><code>function identity(arg: any): any {
+    return arg;
+}
+</code></pre>
+<p>아래의 경우를 보라. 무언가 감이 오나? <T>가 사용할 타입을 정의하였고, 임의의 타입 T로서 입력과 출력이
+같음을 컴파일러가 알 수 있다.</p>
+<pre><code>function identity&#x3C;T>(arg: T): T {
+    return arg;
+}
+</code></pre>
+<p>참 쉽죠?
+<img src='https://cdn.namuwikiusercontent.com/storage/bca9f7f94df136a15bb613f34cf4979fab932c1d76fa4f9653ce98f84b8314e0df1f21c97ef7b6d86c73bccc333506183a71712f0477b2762fc94a8be57e31fabbefd0f7bfc6df1abad096b44437643f?e=1504741362&k=8Pf_oPUMZa_bthgz3e5wBQ'/></p>
+<pre><code>let output = identity&#x3C;string>("myString");  // type of output will be 'string'
+</code></pre>
+<p>이것이 번거롭다면 아래와 같이 타입 추론으로 해당 타입을 명시 하지 않아도 된다.</p>
+<pre><code>let output = identity("myString");  // type of output will be 'string'
+</code></pre>
+<p>[번역] 타입 꺽쇠 괄호 (&#x3C;>) 안에 명시 적으로 타입을 전달할 필요가 없었 음을 주목하십시오. 컴파일러는
+방금 "myString"값을보고 T를 해당 유형으로 설정합니다. 타입 인자 추론은 코드를 더 짧고 가독성있게
+유지하는 유용한 툴이 될 수 있지만,보다 복잡한 예제 에서처럼 컴파일러가 타입을 추론하지 못하면 앞의
+예제에서와 같이 타입 인자를 명시 적으로 전달해야 할 수도 있습니다.</p>
+<h2 id="working-with-generic-type-variables"><a href="#working-with-generic-type-variables" aria-hidden="true"><span class="icon icon-link"></span></a>Working with Generic Type Variables</h2>
+<p>identity 함수를 다시 살펴보자.</p>
+<pre><code>function identity&#x3C;T>(arg: T): T {
+    return arg;
+}
+</code></pre>
+<p>여기에 T가 array 이고 length props에 접근하고 싶다면, 어떠할까?</p>
+<pre><code>function loggingIdentity&#x3C;T>(arg: T): T {
+    console.log(arg.length);  // Error: T doesn't have .length
+    return arg;
+}
+</code></pre>
+<p>위에서 처럼 T에 length가 있는지 알 수 없으니 위와 같은 정의는 에러가 발생한다.</p>
+<p>다음과 같이 표현할 수 있고,</p>
+<pre><code>function loggingIdentity&#x3C;T>(arg: T[]): T[] {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+</code></pre>
+<p>이렇게 된다.</p>
+<pre><code>function loggingIdentity&#x3C;T>(arg: Array&#x3C;T>): Array&#x3C;T> {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+</code></pre>
+<h2 id="generic-types"><a href="#generic-types" aria-hidden="true"><span class="icon icon-link"></span></a>Generic Types</h2>
+<p>[번역]이전 섹션에서는 다양한 유형의 함수를 처리하는 일반적인 신원 확인 함수를 만들었습니다. 이 섹션에서는
+함수 자체의 유형과 일반적인 인터페이스를 만드는 방법에 대해 살펴 보겠습니다.</p>
+<p>일반 함수의 형식은 함수 선언과 마찬가지로 형식 매개 변수가 먼저 나열된 비 제네릭 함수의 형식과 같습니다.</p>
+<ul>
+<li>함수 선언</li>
+</ul>
+<pre><code>function identity&#x3C;T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: &#x3C;T>(arg: T) => T = identity;
+</code></pre>
+<p>유형 변수의 수와 유형 변수의 사용법이 일치하는 한 유형에 제네릭 유형 매개 변수와 다른 이름을 사용할 수도 있습니다.
+(그렇다면, 이건 파라미터를 따지지 않는 함수의 타입 추론 룰에 의거한 것일까??)</p>
+<pre><code>function identity&#x3C;T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: &#x3C;U>(arg: U) => U = identity;
+</code></pre>
+<p>또한 이와 같은 개체 리터럴 형태로도 정의가 가능하다.</p>
+<pre><code>function identity&#x3C;T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: {&#x3C;T>(arg: T): T} = identity;
+</code></pre>
+<p>인터페이스를 이용한다면 이러한다.</p>
+<pre><code>interface GenericIdentityFn {
+    &#x3C;T>(arg: T): T;
+}
+
+function identity&#x3C;T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: GenericIdentityFn = identity;
+</code></pre>
+<p>여기서 조금만 더 머리를 굴리면 이렇겟도 된다.</p>
+<pre><code>interface GenericIdentityFn&#x3C;T> {
+    (arg: T): T;
+}
+
+function identity&#x3C;T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: GenericIdentityFn&#x3C;number> = identity;
+</code></pre>
+<p>(참고로 자바가 요딴식이다.)</p>
+<h2 id="generic-classes"><a href="#generic-classes" aria-hidden="true"><span class="icon icon-link"></span></a>Generic Classes</h2>
+<pre><code>class GenericNumber&#x3C;T> {
+    zeroValue: T;
+    add: (x: T, y: T) => T;
+}
+
+let myGenericNumber = new GenericNumber&#x3C;number>();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function(x, y) { return x + y; };
+</code></pre>
+<p>문자던 뭐던 다 됨( 이럴려면 뭐하러 이름을 이따구 짓나.)</p>
+<pre><code>let stringNumeric = new GenericNumber&#x3C;string>();
+stringNumeric.zeroValue = "";
+stringNumeric.add = function(x, y) { return x + y; };
+
+alert(stringNumeric.add(stringNumeric.zeroValue, "test"));
+</code></pre>
+<p>[번역]클래스에 대한 섹션에서 다뤘 듯이 클래스에는 정적 측면과 인스턴스 측면의 두 가지 유형이 있습니다.
+일반 클래스는 정적 측면이 아닌 인스턴스 측면에서만 일반이므로 클래스를 사용하여 작업 할 때 정적 멤버는
+클래스의 type 매개 변수를 사용할 수 없습니다</p>
+<h2 id="generic-constraints"><a href="#generic-constraints" aria-hidden="true"><span class="icon icon-link"></span></a>Generic Constraints</h2>
+<pre><code>function loggingIdentity&#x3C;T>(arg: T): T {
+    console.log(arg.length);  // Error: T doesn't have .length
+    return arg;
+}
+</code></pre>
+<p>일전에 예제는 이랫엇죠. 그래서 간단하게 배열로서 이 문제를 해결했었지만, 사실 이것이 꼭 배열이라는 보장은
+없다. 때로는 확장된 어레이 클래스일 수도 있다. 만약 어레이의 형태이지만, 그것이 정확이 배열인지 아니면
+다른 어떠한 것이지에 대한 확증이 없다면 어떻게 해야 할까? 여기서 중요한 것은 어쨌든 그게 무엇이던간에
+length 라는 프로퍼티로 접근할 수 있는 그 무언가여야 한다는 것은 변하지 않는 사실이다.
+바로 아래 처럼</p>
+<pre><code>interface Lengthwise {
+    length: number;
+}
+
+function loggingIdentity&#x3C;T extends Lengthwise>(arg: T): T {
+    console.log(arg.length);  // Now we know it has a .length property, so no more error
+    return arg;
+}
+</code></pre>
+<pre><code>loggingIdentity(3);  // 이 딴건 어림 없다구, 친구.
+</code></pre>
+<pre><code>loggingIdentity({length: 10, value: 3});
+</code></pre>
+<h2 id="using-type-parameters-in-generic-constraints"><a href="#using-type-parameters-in-generic-constraints" aria-hidden="true"><span class="icon icon-link"></span></a>Using Type Parameters in Generic Constraints</h2>
+<p>이 쯤 되면, 감잡앗쥐? 형이 이건 예제만 보여줄게.</p>
+<pre><code>function getProperty&#x3C;T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];
+}
+
+let x = { a: 1, b: 2, c: 3, d: 4 };
+
+getProperty(x, "a"); // okay
+getProperty(x, "m"); // error: Argument of type 'm' isn't assignable to 'a' | 'b' | 'c' | 'd'.
+</code></pre>
+<h2 id="using-class-types-in-generics"><a href="#using-class-types-in-generics" aria-hidden="true"><span class="icon icon-link"></span></a>Using Class Types in Generics</h2>
+<p>팩토리를 이용하여 클래스를 생성한다면, 아래와 같이 할 수 잇다.
+(이 거 보고 바로 이해 하면 여태까지 내용은 잘 이해했다는 뜻)
+(이런 거가 자바스크립트의 묘미인가?=ㅅ=)
+<img src='http://postfiles13.naver.net/MjAxNjEyMThfMjEy/MDAxNDgxOTk2NDc1MjU2.7cUGizeJB130-B8sf75xf12wf3cTKe_LL55wRwrz8Wcg.7Trd-0UOCuixLxMOngr5yPIQwMqJwqXDZiOvpFduB4Mg.PNG.chopa1394/161217_%EC%95%84%EB%8A%94%ED%98%95%EB%8B%98_%EB%A7%88%EB%A7%88%EB%AC%B4%2C%ED%97%88%EA%B2%BD%ED%99%98_%2822%29.png?type=w2' /></p>
+<pre><code>function create&#x3C;T>(c: {new(): T; }): T {
+    return new c();
+}
+</code></pre>
+<p>받아야 하는 것은 생성자를 가지는 어떠한 클래스 c, 그래서 반환하는 것은 인스턴스 T</p>
+<ul>
+<li>추가 예제</li>
+</ul>
+<pre><code>function create&#x3C;T>(c: {new(): T; }): T {
+    return new c();
+}
+
+class P {
+    constructor(){
+        console.log('ok!');
+    }
+}
+
+create(P);
+</code></pre>
+<p>참고로 아래와 같은 생성자 함수를 만들어 보는 것은 어떠할까??</p>
+<pre><code>//function create def ???
+class P{
+    constructor(){
+        console.log('ok!');
+    }  
+}
+
+class K{
+    constructor(a,b,c){
+        console.log('ok!${a}${b}${c}');
+    }  
+}
+create(P);
+create(P,1,2,3);
+</code></pre>
+<p>좀 더 진행된 예제. 라지만, 위에껏을 이해햇다면 겁낼거가 없슴.</p>
+<pre><code>class BeeKeeper {
+    hasMask: boolean;
+}
+
+class ZooKeeper {
+    nametag: string;
+}
+
+class Animal {
+    numLegs: number;
+}
+
+class Bee extends Animal {
+    keeper: BeeKeeper;
+}
+
+class Lion extends Animal {
+    keeper: ZooKeeper;
+}
+
+function createInstance&#x3C;A extends Animal>(c: new () => A): A {
+    return new c();
+}
+
+createInstance(Lion).keeper.nametag;  // typechecks!
+createInstance(Bee).keeper.hasMask;   // typechecks!
+</code></pre>
+<h2 id=""></h2>
+</div></article></section><footer>© 2017 <a>TypeScriptStudy</a>. All rights reserved.</footer></div></div>
+      </body>
+    </html>
+  
