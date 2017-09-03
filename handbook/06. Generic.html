@@ -18,10 +18,10 @@
         href="//fonts.googleapis.com/css?family=Rubik|Unica+One"
         rel="stylesheet"
       />
-      <link rel="stylesheet" href="../static/css/normalize.css?7c610d17db854306" />
-      <link rel="stylesheet" href="../static/css/flexboxgrid.min.css?7c610d17db854306" />
-      <link rel="stylesheet" href="../static/css/github-flavored-markdown.css?7c610d17db854306" />
-      <link rel="stylesheet" href="../static/css/light.css?7c610d17db854306" />
+      <link rel="stylesheet" href="../static/css/normalize.css?dddd3465303d6a44" />
+      <link rel="stylesheet" href="../static/css/flexboxgrid.min.css?dddd3465303d6a44" />
+      <link rel="stylesheet" href="../static/css/github-flavored-markdown.css?dddd3465303d6a44" />
+      <link rel="stylesheet" href="../static/css/light.css?dddd3465303d6a44" />
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css" />
       <style>
         body, .markdown-body {
@@ -29,7 +29,7 @@
         }
       </style>
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-      <script src="../static/main.js?7c610d17db854306"></script>
+      <script src="../static/main.js?dddd3465303d6a44"></script>
       <body>
         <div id="root"><div class="wrap container-fluid"><header class="site-header"><h1><a href="/">TypeScriptStudy</a></h1><nav class="nav-link"><a href="/">Home</a><a href="https://github.com/https://github.com/otwm/TypeScriptStudy.git">Git</a><a href="#" class="more"><svg aria-hidden="true" class="octicon" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg></a></nav></header><section class="row main"><aside class="col-xs-12 col-sm-3 col-md-3 col-lg-3"><div class="chap"><span class="chap-title">Start</span><ul><li class=""><a href="../start/01.%20TypeScript%20Intro.html">01. Typescript Intro</a></li><li class=""><a href="../start/02.%20TypeScript%20in%205minutes.html">02. Typescript In 5minutes</a></li></ul></div><div class="chap"><span class="chap-title">Handbook</span><ul><li class=""><a href="../handbook/01.%20basicType.html">01. Basictype</a></li><li class=""><a href="../handbook/02.%20variable%20Declation.html">02. Variable Declation</a></li><li class=""><a href="../handbook/03.%20Interfaces.html">03. Interfaces</a></li><li class=""><a href="../handbook/04.%20Class.html">04. Class</a></li><li class=""><a href="../handbook/05.%20Functions.html">05. Functions</a></li><li class="active"><a href="../handbook/06.%20Generic.html">06. Generic</a></li><li class=""><a href="../handbook/07.%20Enum.html">07. Enum</a></li></ul></div></aside><article class="col-xs-12 col-sm-9 col-md-9 col-lg-9"><div class="markdown-body"><h1 id="generics"><a href="#generics" aria-hidden="true"><span class="icon icon-link"></span></a>Generics</h1>
 <h2 id="소개"><a href="#%EC%86%8C%EA%B0%9C" aria-hidden="true"><span class="icon icon-link"></span></a>소개</h2>
@@ -56,7 +56,8 @@
     return arg;
 }
 </code></pre>
-<p>아래의 경우를 보라. 무언가 감이 오나? <T>가 사용할 타입을 정의하였고, 임의의 타입 T로서 입력과 출력이
+<p>아래의 경우를 보라. 무언가 감이 오나?<br>
+<T>가 사용할 타입을 정의하였고, 임의의 타입 T로서 입력과 출력이
 같음을 컴파일러가 알 수 있다.</p>
 <pre><code>function identity&#x3C;T>(arg: T): T {
     return arg;
@@ -205,9 +206,9 @@ getProperty(x, "a"); // okay
 getProperty(x, "m"); // error: Argument of type 'm' isn't assignable to 'a' | 'b' | 'c' | 'd'.
 </code></pre>
 <h2 id="using-class-types-in-generics"><a href="#using-class-types-in-generics" aria-hidden="true"><span class="icon icon-link"></span></a>Using Class Types in Generics</h2>
-<p>팩토리를 이용하여 클래스를 생성한다면, 아래와 같이 할 수 잇다.
-(이 거 보고 바로 이해 하면 여태까지 내용은 잘 이해했다는 뜻)
-(이런 거가 자바스크립트의 묘미인가?=ㅅ=)
+<p>팩토리를 이용하여 클래스를 생성한다면, 아래와 같이 할 수 잇다.<br>
+(이 거 보고 바로 이해 하면 여태까지 내용은 잘 이해했다는 뜻)<br>
+(이런 거가 자바스크립트의 묘미인가?=ㅅ=)<br>
 <img src='http://postfiles13.naver.net/MjAxNjEyMThfMjEy/MDAxNDgxOTk2NDc1MjU2.7cUGizeJB130-B8sf75xf12wf3cTKe_LL55wRwrz8Wcg.7Trd-0UOCuixLxMOngr5yPIQwMqJwqXDZiOvpFduB4Mg.PNG.chopa1394/161217_%EC%95%84%EB%8A%94%ED%98%95%EB%8B%98_%EB%A7%88%EB%A7%88%EB%AC%B4%2C%ED%97%88%EA%B2%BD%ED%99%98_%2822%29.png?type=w2' /></p>
 <pre><code>function create&#x3C;T>(c: {new(): T; }): T {
     return new c();
