@@ -6,11 +6,16 @@
   "author": "kdo <otwmoo@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "clear": "rimraf ./out",
     "docs": "flybook docs --outdir=out",
     "deploy": "gh-pages -d out",
     "publish": "flybook docs --outdir=out && gh-pages -d out"
   },
   "devDependencies": {
-    "gh-pages": "^1.0.0"
+    "gh-pages": "^1.0.0",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "flybook": "^1.4.5"
   }
 }
