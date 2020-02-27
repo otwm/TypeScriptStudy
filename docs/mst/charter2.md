@@ -44,10 +44,12 @@
 + any 타입을 가능하면 쓰지말자.( 과연 그럴 수 있을까?)
 + 많이 사용하면 할수록 타입 스크립트의 강점이 소멸된다.
 
+unknown + 뒤에서
 https://mariusschulz.com/blog/the-unknown-type-in-typescript
 https://engineering.huiseoul.com/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-3-0-99e5d45ec439
 https://stackoverflow.com/questions/51439843/unknown-vs-any
 https://medium.com/@auth0/typescript-3-0-exploring-tuples-and-the-unknown-type-2b96ec1099ea
+https://blog.logrocket.com/when-to-use-never-and-unknown-in-typescript-5e4d6c5799ad/
 
 ## 명시적 형변환 (type assertions)
 타입을 변경할 수 있다.
@@ -105,8 +107,9 @@ let a = Enum.A;
 let nameOfA = Enum[Enum.A]; // "A" reverse mapping
 ```
 ### Ambient enum
-Ambient enums은 이미 존재하는 열거형의 모양을 Typescript에 (혹은 IDE에) 선언할때 사용 됩니다.
-Ambient enums와 non-ambient enums의 가장 중요한 차이점은 Ambient enums는 initializer(=)가 없는 맴버는 computed member로 간주 한다는 것 입니다
+앰비언트 열거형과 비앰비언트 열거형의 중요한 차이점 중 하나는 일반 열거형에서 초기화가 없는 멤버는 이전 열거형 멤버가 상수로 간주된다는 것입니다.
+반대로, 초기화가 없는 앰비언트 (그리고 비상수(non-const)) 열거형 멤버는 항상 계산된 것으로 간주됩니다.
++ ??
 
 ```typescript
 declare enum Foo1 {
@@ -121,7 +124,7 @@ enum Foo2 {
     Z, // constant
 }
 ```
-https://vomvoru.github.io/blog/typescript-Enum/
+https://typescript-kr.github.io/pages/Enums.html
 
 ## 함수와 익명 함수, 선택적 인자와 기본 함수 인자, 인자 배열, 함수 콜백, 함수 시그니처, 함수 오버로드
 ```typescript
